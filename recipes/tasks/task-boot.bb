@@ -32,6 +32,7 @@ RDEPENDS_task-boot = "\
     ${@base_contains("MACHINE_FEATURES", "keyboard", "keymaps", "", d)} \
     modutils-initscripts \
     netbase \
+    ntp \
     ${DISTRO_UPDATE_ALTERNATIVES} \
     ${MACHINE_ESSENTIAL_EXTRA_RDEPENDS} \
     "

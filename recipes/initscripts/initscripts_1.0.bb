@@ -32,7 +32,9 @@ SRC_URI = "file://functions \
            file://populate-volatile.sh \
            file://volatiles \
            file://save-rtc.sh \
-           file://save-rtc-uclibc.sh"
+           file://save-rtc-uclibc.sh \
+           file://rascal-gpio \
+           file://rascal-webserver"
 
 SRC_URI_append_arm = " file://alignment.sh"
 
@@ -76,6 +78,8 @@ do_install () {
 	install -m 0755    ${WORKDIR}/sysfs.sh		${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/populate-volatile.sh ${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/save-rtc.sh	${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-gpio   ${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-webserver	${D}${sysconfdir}/init.d
 	install -m 0644    ${WORKDIR}/volatiles		${D}${sysconfdir}/default/volatiles/00_core
 	if [ "${TARGET_ARCH}" = "arm" ]; then
 		install -m 0755 ${WORKDIR}/alignment.sh	${D}${sysconfdir}/init.d
@@ -116,6 +120,8 @@ do_install () {
 	ln -sf		../init.d/mountnfs.sh	${D}${sysconfdir}/rcS.d/S45mountnfs.sh
 	ln -sf		../init.d/bootmisc.sh	${D}${sysconfdir}/rcS.d/S55bootmisc.sh
 #	ln -sf		../init.d/urandom	${D}${sysconfdir}/rcS.d/S55urandom
+	ln -sf		../init.d/rascal-gpio	${D}${sysconfdir}/rc5.d/S60rascal-gpio
+	ln -sf		../init.d/rascal-webserver ${D}${sysconfdir}/rc5.d/S65rascal-webserver
 	ln -sf		../init.d/finish.sh	${D}${sysconfdir}/rcS.d/S99finish.sh
 	ln -sf		../init.d/devices	${D}${sysconfdir}/rcS.d/S05devices
 	# udev will run at S04 if installed

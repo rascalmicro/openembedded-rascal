@@ -89,7 +89,7 @@ do_install () {
 	done
 
 	if [ -n "${MACHINE}" -a "${hostname}" = "openembedded" ]; then
-		echo ${MACHINE} > ${D}${sysconfdir}/hostname
+		echo "rascal" > ${D}${sysconfdir}/hostname
 	else
 		echo ${hostname} > ${D}${sysconfdir}/hostname
 	fi
