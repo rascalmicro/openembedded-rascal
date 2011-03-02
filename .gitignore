@@ -4,3 +4,7 @@ lib/oe/*.pyc
 lib/oe/*.pyo
 contrib/*/*.pyc
 contrib/*/*.pyo
+tmp
+oe_sources
+bitbake
+!.gitignore
