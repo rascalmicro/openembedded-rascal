@@ -2,17 +2,14 @@ require recipes/images/minimal-image.bb
 
 IMAGE_INSTALL += "\
         gcc \
+        gcc-symlinks \
         git \
         i2c-tools \
         iperf \
-        lighttpd \
-        lighttpd-module-access \
-        lighttpd-module-accesslog \
-        lighttpd-module-dirlisting \
-        lighttpd-module-indexfile \
-        lighttpd-module-staticfile \
+        libgcc-dev \
         nano \
         python \
+        python-daemon \
         python-modules \
         python-pyserial \
         ruby \
@@ -20,5 +17,8 @@ IMAGE_INSTALL += "\
         usb-gadget-mode \
         vim \
     "
+
+PREFERRED_VERSION_gcc = "4.5"
+PREFERRED_PROVIDER_virtual/libgcc-dev = "gcc"
 
 export IMAGE_BASENAME = "rascal-image"

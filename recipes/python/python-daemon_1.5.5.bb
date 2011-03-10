@@ -7,7 +7,7 @@ SRCNAME = "daemon"
 PR = "ml1"
 
 SRC_URI = "http://pypi.python.org/packages/source/p/python-daemon/python-daemon-${PV}.tar.gz"
-S = "${WORKDIR}/${SRCNAME}-${PV}"
+S = "${WORKDIR}/python-daemon-${PV}"
 
 inherit setuptools
 
