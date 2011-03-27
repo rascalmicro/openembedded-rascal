@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# void log_msg(char*)
+log_msg()
+{
+    /usr/bin/logger -s $1
+}
+
+#
+# Busybos's chpasswd applet should do this for us, but
+# it fails on root so i wrote this function instead
+#
+# int change_pw(char* username,char* pw_hash)
+change_pw()
+{
+    local USERNAME=$1
+    local NEW_PWHASH=$2
+
+    local PASSWDFILE=/etc/passwd
+    local TEMPFILE=/etc/passwd.tmp
+
+    rm -f $TEMPFILE
+    while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
+    do
+        if [ $f1 = $USERNAME ]; then
+            f2=$NEW_PWHASH
+        fi
+        echo "$f1:$f2:$f3:$f4:$f5:$f6:$f7" >> $TEMPFILE
+    done < $PASSWDFILE
+
+    # Comment this out for dry-run
+    mv $TEMPFILE $PASSWDFILE
+}
+
+log_msg "Rascal initialization..."
+
+#
+# If root's password is blank, set it to board-speciifc default
+#
+PASSWDFILE=/etc/passwd
+IS_BLANK=0
+DEF_PW_HASH=XnugPeUjnLedI
+
+while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
+do
+    if [ $f1 = "root" ]; then
+        if [ -z $f2 ]; then
+            IS_BLANK=1
+        fi
+        break
+    fi
+done < $PASSWDFILE
+
+if [ $IS_BLANK != 0 ]; then
+    log_msg "root's password was blank; defaulted"
+    change_pw root $DEF_PW_HASH
+else
+    log_msg "root's password is not blank -- good job"
+fi
+
+
+exit 0

@@ -4,7 +4,7 @@ PRIORITY = "required"
 DEPENDS = "makedevs"
 RDEPENDS_${PN} = "makedevs"
 LICENSE = "GPL"
-PR = "r126" 
+PR = "r126"
 
 SRC_URI = "file://functions \
            file://halt \
@@ -33,6 +33,7 @@ SRC_URI = "file://functions \
            file://volatiles \
            file://save-rtc.sh \
            file://save-rtc-uclibc.sh \
+           file://rascal-init \
            file://rascal-gpio \
            file://rascal-webserver"
 
@@ -78,6 +79,7 @@ do_install () {
 	install -m 0755    ${WORKDIR}/sysfs.sh		${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/populate-volatile.sh ${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/save-rtc.sh	${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-init   ${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/rascal-gpio   ${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/rascal-webserver	${D}${sysconfdir}/init.d
 	install -m 0644    ${WORKDIR}/volatiles		${D}${sysconfdir}/default/volatiles/00_core
@@ -120,6 +122,7 @@ do_install () {
 	ln -sf		../init.d/mountnfs.sh	${D}${sysconfdir}/rcS.d/S45mountnfs.sh
 	ln -sf		../init.d/bootmisc.sh	${D}${sysconfdir}/rcS.d/S55bootmisc.sh
 #	ln -sf		../init.d/urandom	${D}${sysconfdir}/rcS.d/S55urandom
+	ln -sf		../init.d/rascal-init	${D}${sysconfdir}/rc5.d/S50rascal-init
 	ln -sf		../init.d/rascal-gpio	${D}${sysconfdir}/rc5.d/S60rascal-gpio
 	ln -sf		../init.d/rascal-webserver ${D}${sysconfdir}/rc5.d/S65rascal-webserver
 	ln -sf		../init.d/finish.sh	${D}${sysconfdir}/rcS.d/S99finish.sh
