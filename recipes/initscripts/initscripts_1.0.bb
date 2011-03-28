@@ -122,9 +122,9 @@ do_install () {
 	ln -sf		../init.d/mountnfs.sh	${D}${sysconfdir}/rcS.d/S45mountnfs.sh
 	ln -sf		../init.d/bootmisc.sh	${D}${sysconfdir}/rcS.d/S55bootmisc.sh
 #	ln -sf		../init.d/urandom	${D}${sysconfdir}/rcS.d/S55urandom
-	ln -sf		../init.d/rascal-init	${D}${sysconfdir}/rc5.d/S50rascal-init
-	ln -sf		../init.d/rascal-gpio	${D}${sysconfdir}/rc5.d/S60rascal-gpio
-	ln -sf		../init.d/rascal-webserver ${D}${sysconfdir}/rc5.d/S65rascal-webserver
+	ln -sf		../init.d/rascal-init	${D}${sysconfdir}/rc5.d/S60rascal-init
+	ln -sf		../init.d/rascal-gpio	${D}${sysconfdir}/rc5.d/S65rascal-gpio
+	ln -sf		../init.d/rascal-webserver ${D}${sysconfdir}/rc5.d/S70rascal-webserver
 	ln -sf		../init.d/finish.sh	${D}${sysconfdir}/rcS.d/S99finish.sh
 	ln -sf		../init.d/devices	${D}${sysconfdir}/rcS.d/S05devices
 	# udev will run at S04 if installed
