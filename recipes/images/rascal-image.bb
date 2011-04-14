@@ -7,7 +7,9 @@ IMAGE_INSTALL += "\
         i2c-tools \
         iperf \
         libgcc-dev \
+        libxml2 \
         nano \
+        nginx \
         python \
         python-daemon \
         python-modules \
@@ -15,6 +17,7 @@ IMAGE_INSTALL += "\
         ruby \
         usbutils \
         usb-gadget-mode \
+        uwsgi \
         vim \
     "
 
