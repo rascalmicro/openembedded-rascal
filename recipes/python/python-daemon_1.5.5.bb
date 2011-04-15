@@ -4,7 +4,7 @@ SECTION = "devel/python"
 PRIORITY = "optional"
 LICENSE = "PSF"
 SRCNAME = "daemon"
-PR = "ml1"
+PR = "r0"
 
 SRC_URI = "http://pypi.python.org/packages/source/p/python-daemon/python-daemon-${PV}.tar.gz"
 S = "${WORKDIR}/python-daemon-${PV}"
