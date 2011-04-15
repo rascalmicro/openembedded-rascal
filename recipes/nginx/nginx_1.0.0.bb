@@ -1,10 +1,10 @@
-DESCRIPTION = "NNginx is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server."
+DESCRIPTION = "Nginx is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server."
 HOMEPAGE = "http://wiki.nginx.org"
 SECTION = "net"
 PRIORITY = "optional"
 LICENSE = "BSD"
 SRCNAME = "nginx"
-PR = "r27"
+PR = "r28"
 
 SRC_URI = "http://nginx.org/download/nginx-${PV}.tar.gz \
            file://allow-cross.patch"
@@ -13,7 +13,7 @@ S = "${WORKDIR}/${PN}-${PV}"
 
 do_configure() {
     export cross_compiling="yes"
-    ${S}/configure --with-cc=/home/user/openembedded-rascal/tmp/sysroots/i686-linux/usr/armv5te/bin/arm-angstrom-linux-gnueabi-gcc --without-http_rewrite_module --sbin-path=${S}/usr/sbin --error-log-path=/var/log/nginx/error --conf-path=/etc/nginx/nginx.conf
+    ${S}/configure --with-cc=${HOST_PREFIX}gcc --without-http_rewrite_module --sbin-path=${S}${sbindir} --error-log-path=${localstatedir}/log/nginx/error --conf-path=${sysconfdir}/nginx/nginx.conf
 }
 
 do_install() {
