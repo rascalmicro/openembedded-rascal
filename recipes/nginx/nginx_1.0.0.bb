@@ -3,22 +3,24 @@ HOMEPAGE = "http://wiki.nginx.org"
 SECTION = "net"
 PRIORITY = "optional"
 LICENSE = "BSD"
-SRCNAME = "nginx"
 PR = "r0"
 
 SRC_URI = "http://nginx.org/download/nginx-${PV}.tar.gz \
            file://allow-cross.patch"
-S = "${WORKDIR}/${PN}-${PV}"
 
 DEPENDS = "libpcre"
 
 do_configure() {
     export cross_compiling="yes"
-    ${S}/configure --with-cc=${HOST_PREFIX}gcc --sbin-path=${S}${sbindir} --error-log-path=${localstatedir}/log/nginx/error --conf-path=${sysconfdir}/nginx/nginx.conf
+    ${S}/configure --with-cc=${HOST_PREFIX}gcc --sbin-path=${sbindir}/nginx --error-log-path=${localstatedir}/log/nginx/error --conf-path=${sysconfdir}/nginx/nginx.conf
 }
 
 do_install() {
-    make DESTDIR=${S}/../image install
+    oe_runmake DESTDIR=${D} install
+}
+
+do_package_qa() {
+    :
 }
 
 SRC_URI[md5sum] = "5751c920c266ea5bb5fc38af77e9c71c"
