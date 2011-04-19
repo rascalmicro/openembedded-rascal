@@ -30,7 +30,7 @@ S = "${WORKDIR}/perl-${PV}"
 
 inherit native
 
-export LD="${CC}"
+export LD="${CCLD}"
 
 do_configure () {
     ./Configure \
