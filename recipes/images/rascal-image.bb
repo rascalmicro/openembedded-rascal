@@ -14,6 +14,7 @@ IMAGE_INSTALL += "\
         python-daemon \
         python-modules \
         python-pyserial \
+        python-rascal \
         ruby \
         usbutils \
         usb-gadget-mode \
