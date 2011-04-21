@@ -66,6 +66,9 @@ case "$1" in
 			echo adding dns $i
 			echo nameserver $i >> $RESOLV_CONF
 		done
+		echo "# Google public DNS as backup" >> $RESOLV_CONF
+		echo nameserver 8.8.8.8 >> $RESOLV_CONF
+		echo nameserver 8.8.4.4 >> $RESOLV_CONF
 		;;
 esac
 
