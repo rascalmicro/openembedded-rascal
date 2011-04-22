@@ -1,10 +1,2 @@
-/////////////////////////////////////////
-//                                     //
-// Rascal Micro                        //
-// Small computers for art and science //
-//                                     //
-/////////////////////////////////////////
-issue
-Rascal beta test %h
-date: \d
-release: \r
+Date: \d
+Kernel release: \r
