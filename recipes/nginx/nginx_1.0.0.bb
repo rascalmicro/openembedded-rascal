@@ -12,15 +12,25 @@ DEPENDS = "libpcre"
 
 do_configure() {
     export cross_compiling="yes"
-    ${S}/configure --with-cc=${HOST_PREFIX}gcc --sbin-path=${sbindir}/nginx --error-log-path=${localstatedir}/log/nginx/error --conf-path=${sysconfdir}/nginx/nginx.conf
+    ${S}/configure \
+    --with-cc="${HOST_PREFIX}gcc -Wl,--hash-style=gnu" \
+    --sbin-path=${sbindir}/nginx \
+    --pid-path=${localstatedir}/run/nginx.pid \
+    --lock-path=${localstatedir}/lock/nginx.lock \
+    --error-log-path=${localstatedir}/log/nginx/error \
+    --conf-path=${sysconfdir}/nginx/nginx.conf \
+    --http-log-path=${localstatedir}/log/nginx/access \
+    --http-client-body-temp-path=${localstatedir}/lib/nginx/client_body_temp \
+    --http-proxy-temp-path=${localstatedir}/lib/nginx/proxy_temp \
+    --http-fastcgi-temp-path=${localstatedir}/lib/nginx/fastcgi_temp \
+    --http-uwsgi-temp-path=${localstatedir}/lib/nginx/uwsgi_temp \
+    --http-scgi-temp-path=${localstatedir}/lib/nginx/scgi_temp
 }
 
 do_install() {
+    install -d ${D}${localstatedir}/lib/nginx
+    install -d ${D}${localstatedir}/log/nginx
     oe_runmake DESTDIR=${D} install
-}
-
-do_package_qa() {
-    :
 }
 
 SRC_URI[md5sum] = "5751c920c266ea5bb5fc38af77e9c71c"
