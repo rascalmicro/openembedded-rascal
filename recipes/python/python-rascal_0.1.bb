@@ -11,7 +11,6 @@ S = "${WORKDIR}/git"
 SRCREV = "0.1"
 SRC_URI = "git://github.com/rascalmicro/hardware-api.git;protocol=git;branch=master"
 
-
 inherit distutils
 
 RDEPENDS_${PN} = "\

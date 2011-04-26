@@ -12,9 +12,12 @@ IMAGE_INSTALL += "\
         nginx \
         python \
         python-daemon \
+        python-flask \
+        python-jinja2 \
         python-modules \
         python-pyserial \
         python-rascal \
+        python-werkzeug \
         ruby \
         usbutils \
         usb-gadget-mode \
