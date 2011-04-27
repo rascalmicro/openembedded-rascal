@@ -1,6 +1,9 @@
 require recipes/images/minimal-image.bb
 
 IMAGE_INSTALL += "\
+        binutils \
+        cpp \
+        cpp-symlinks \
         gcc \
         gcc-symlinks \
         git \
@@ -24,8 +27,5 @@ IMAGE_INSTALL += "\
         uwsgi \
         vim \
     "
-
-PREFERRED_VERSION_gcc = "4.5"
-PREFERRED_PROVIDER_virtual/libgcc-dev = "gcc"
 
 export IMAGE_BASENAME = "rascal-image"
