@@ -11,12 +11,15 @@ IMAGE_INSTALL += "\
         iperf \
         libgcc-dev \
         libxml2 \
+        make \
         nano \
         nginx \
+        ntpdate \
         python \
         python-daemon \
         python-flask \
         python-jinja2 \
+        python-misc \
         python-modules \
         python-pyserial \
         python-rascal \
@@ -26,6 +29,7 @@ IMAGE_INSTALL += "\
         usb-gadget-mode \
         uwsgi \
         vim \
+        vim-vimrc \
     "
 
 export IMAGE_BASENAME = "rascal-image"

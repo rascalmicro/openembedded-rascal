@@ -1,6 +1,8 @@
 require git.inc
 
-SRC_URI += "file://git-less-hardlinks.diff"
+SRC_URI += "file://git-less-hardlinks.diff \
+            file://gitconfig \
+           "
 
 EXTRA_OECONF += "ac_cv_snprintf_returns_bogus=no ac_cv_c_c99_format=yes"
 
@@ -25,6 +27,8 @@ do_install_append() {
 		ln -sf ${bindir}/$gitprog ${D}${libexecdir}/git-core/$gitprog
 	done
 	rm ${D}${libexecdir}/git-core/git && ln -sf ${bindir}/git ${D}${libexecdir}/git-core/git
+    install -m 0755 -d ${D}${sysconfdir}
+    install -m 0755 ${WORKDIR}/gitconfig ${D}${sysconfdir}
 }
 
 FILES_${PN}-dbg += "${libexecdir}/git-core/.debug"

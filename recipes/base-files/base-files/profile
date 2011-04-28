@@ -41,8 +41,6 @@ if [ "$PS1" ]; then
     esac
 fi
 
-GIT_SSH=git-ssh # To make Dropbear SSH work with Github
-
 if [ -d /etc/profile.d ]; then
   for i in /etc/profile.d/*.sh; do
     if [ -r $i ]; then
@@ -52,10 +50,10 @@ if [ -d /etc/profile.d ]; then
   unset i
 fi
 
-export GIT_SSH PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
 
-alias w="who -a"
+alias ls="ls --color=auto"
 alias vi="vim"
-alias git-ssh="ssh -i ~/.ssh/id_rsa $*"
+alias w="who -a"
 
 umask 022
