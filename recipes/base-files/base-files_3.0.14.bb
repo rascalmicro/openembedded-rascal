@@ -41,7 +41,7 @@ dirs755 = "/bin /boot /dev ${sysconfdir} ${sysconfdir}/default \
 	   /sys ${localstatedir}/lib/misc ${localstatedir}/spool \
 	   ${localstatedir}/volatile ${localstatedir}/volatile/cache \
 	   ${localstatedir}/volatile/lock/subsys \
-	   ${localstatedir}/volatile/log \
+	   ${localstatedir}/log \
 	   ${localstatedir}/volatile/run \
 	   /mnt /media /media/card /media/cf /media/net /media/ram \
 	   /media/union /media/realroot /media/hdd \
@@ -54,7 +54,7 @@ dirs1777_micro = "/tmp"
 media = "card cf net ram"
 media_micro = ""
 
-volatiles = "cache run log lock tmp"
+volatiles = "cache run lock tmp"
 conffiles = "${sysconfdir}/debian_version ${sysconfdir}/host.conf \
 	     ${sysconfdir}/inputrc ${sysconfdir}/issue /${sysconfdir}/issue.net \
 	     ${sysconfdir}/nsswitch.conf ${sysconfdir}/profile \

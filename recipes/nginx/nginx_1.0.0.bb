@@ -18,7 +18,7 @@ do_configure() {
     --pid-path=${localstatedir}/run/nginx.pid \
     --lock-path=${localstatedir}/lock/nginx.lock \
     --error-log-path=${localstatedir}/log/nginx/error \
-    --conf-path=${sysconfdir}/nginx/nginx.conf \
+    --conf-path=${sysconfdir}/nginx.conf \
     --http-log-path=${localstatedir}/log/nginx/access \
     --http-client-body-temp-path=${localstatedir}/lib/nginx/client_body_temp \
     --http-proxy-temp-path=${localstatedir}/lib/nginx/proxy_temp \
