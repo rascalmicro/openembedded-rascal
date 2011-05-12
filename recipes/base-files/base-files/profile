@@ -50,7 +50,9 @@ if [ -d /etc/profile.d ]; then
   unset i
 fi
 
-export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+VIM="/usr/share/vim"
+
+export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM VIM
 
 alias ls="ls --color=auto"
 alias vi="vim"
