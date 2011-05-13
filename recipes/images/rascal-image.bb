@@ -15,6 +15,8 @@ IMAGE_INSTALL += "\
         nano \
         nginx \
         ntpdate \
+        openssh \
+        openssh-keygen \
         python \
         python-daemon \
         python-flask \
