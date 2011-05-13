@@ -33,10 +33,11 @@ SRC_URI = "file://functions \
            file://volatiles \
            file://save-rtc.sh \
            file://save-rtc-uclibc.sh \
-           file://rascal-analogger \
-           file://rascal-gpio \
-           file://rascal-init \
-           file://rascal-webserver"
+           file://rascal-analogger.py \
+           file://rascal-gpio.sh \
+           file://rascal-hostname.sh \
+           file://rascal-set-hash.sh \
+           file://rascal-webserver.sh"
 
 SRC_URI_append_arm = " file://alignment.sh"
 
@@ -80,10 +81,11 @@ do_install () {
 	install -m 0755    ${WORKDIR}/sysfs.sh		       ${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/populate-volatile.sh ${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/save-rtc.sh	       ${D}${sysconfdir}/init.d
-	install -m 0755    ${WORKDIR}/rascal-analogger     ${D}${sysconfdir}/init.d
-	install -m 0755    ${WORKDIR}/rascal-gpio          ${D}${sysconfdir}/init.d
-	install -m 0755    ${WORKDIR}/rascal-init          ${D}${sysconfdir}/init.d
-	install -m 0755    ${WORKDIR}/rascal-webserver	   ${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-analogger.py  ${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-gpio.sh       ${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-hostname.sh   ${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-set-hash.sh   ${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/rascal-webserver.sh  ${D}${sysconfdir}/init.d
 	install -m 0644    ${WORKDIR}/volatiles		       ${D}${sysconfdir}/default/volatiles/00_core
 	if [ "${TARGET_ARCH}" = "arm" ]; then
 		install -m 0755 ${WORKDIR}/alignment.sh	${D}${sysconfdir}/init.d
@@ -97,45 +99,46 @@ do_install () {
 #
 # Create runlevel links
 #
-	ln -sf		../init.d/rmnologin	${D}${sysconfdir}/rc2.d/S99rmnologin
-	ln -sf		../init.d/rmnologin	${D}${sysconfdir}/rc3.d/S99rmnologin
-	ln -sf		../init.d/rmnologin	${D}${sysconfdir}/rc4.d/S99rmnologin
-	ln -sf		../init.d/rmnologin	${D}${sysconfdir}/rc5.d/S99rmnologin
-	ln -sf		../init.d/sendsigs	${D}${sysconfdir}/rc6.d/S20sendsigs
-#	ln -sf		../init.d/urandom	${D}${sysconfdir}/rc6.d/S30urandom
-	ln -sf		../init.d/umountnfs.sh	${D}${sysconfdir}/rc6.d/S31umountnfs.sh
-	ln -sf		../init.d/umountfs	${D}${sysconfdir}/rc6.d/S40umountfs
+	ln -sf		../init.d/rmnologin	           ${D}${sysconfdir}/rc2.d/S99rmnologin
+	ln -sf		../init.d/rmnologin	           ${D}${sysconfdir}/rc3.d/S99rmnologin
+	ln -sf		../init.d/rmnologin	           ${D}${sysconfdir}/rc4.d/S99rmnologin
+	ln -sf		../init.d/rmnologin	           ${D}${sysconfdir}/rc5.d/S99rmnologin
+	ln -sf		../init.d/sendsigs	           ${D}${sysconfdir}/rc6.d/S20sendsigs
+#	ln -sf		../init.d/urandom	           ${D}${sysconfdir}/rc6.d/S30urandom
+	ln -sf		../init.d/umountnfs.sh	       ${D}${sysconfdir}/rc6.d/S31umountnfs.sh
+	ln -sf		../init.d/umountfs	           ${D}${sysconfdir}/rc6.d/S40umountfs
 	# udev will run at S55 if installed
-	ln -sf          ../init.d/ramdisk       ${D}${sysconfdir}/rcS.d/S30ramdisk
-	ln -sf		../init.d/reboot	${D}${sysconfdir}/rc6.d/S90reboot
-	ln -sf		../init.d/sendsigs	${D}${sysconfdir}/rc0.d/S20sendsigs
-#	ln -sf		../init.d/urandom	${D}${sysconfdir}/rc0.d/S30urandom
-	ln -sf		../init.d/umountnfs.sh	${D}${sysconfdir}/rc0.d/S31umountnfs.sh
-	ln -sf		../init.d/umountfs	${D}${sysconfdir}/rc0.d/S40umountfs
+	ln -sf          ../init.d/ramdisk          ${D}${sysconfdir}/rcS.d/S30ramdisk
+	ln -sf		../init.d/reboot	           ${D}${sysconfdir}/rc6.d/S90reboot
+	ln -sf		../init.d/sendsigs	           ${D}${sysconfdir}/rc0.d/S20sendsigs
+#	ln -sf		../init.d/urandom	           ${D}${sysconfdir}/rc0.d/S30urandom
+	ln -sf		../init.d/umountnfs.sh	       ${D}${sysconfdir}/rc0.d/S31umountnfs.sh
+	ln -sf		../init.d/umountfs	           ${D}${sysconfdir}/rc0.d/S40umountfs
 	# udev will run at S55 if installed
-	ln -sf		../init.d/halt		${D}${sysconfdir}/rc0.d/S90halt
-	ln -sf		../init.d/save-rtc.sh	${D}${sysconfdir}/rc0.d/S25save-rtc.sh
-	ln -sf		../init.d/save-rtc.sh	${D}${sysconfdir}/rc6.d/S25save-rtc.sh
-	ln -sf		../init.d/banner	    ${D}${sysconfdir}/rcS.d/S02banner
-	ln -sf		../init.d/checkroot		${D}${sysconfdir}/rcS.d/S10checkroot
-#	ln -sf		../init.d/checkfs.sh	${D}${sysconfdir}/rcS.d/S30checkfs.sh
-	ln -sf		../init.d/mountall.sh	${D}${sysconfdir}/rcS.d/S35mountall.sh
-	ln -sf		../init.d/hostname.sh	${D}${sysconfdir}/rcS.d/S39hostname.sh
-	ln -sf		../init.d/mountnfs.sh	${D}${sysconfdir}/rcS.d/S45mountnfs.sh
-	ln -sf		../init.d/bootmisc.sh	${D}${sysconfdir}/rcS.d/S55bootmisc.sh
-#	ln -sf		../init.d/urandom	    ${D}${sysconfdir}/rcS.d/S55urandom
-                        # rascal-analogger not enabled by default
-	ln -sf		../init.d/rascal-gpio   ${D}${sysconfdir}/rc5.d/S60rascal-gpio
-	ln -sf		../init.d/rascal-init   ${D}${sysconfdir}/rc5.d/S65rascal-init
-	ln -sf		../init.d/rascal-webserver ${D}${sysconfdir}/rc5.d/S70rascal-webserver
-	ln -sf		../init.d/finish.sh	    ${D}${sysconfdir}/rcS.d/S99finish.sh
-	ln -sf		../init.d/devices	    ${D}${sysconfdir}/rcS.d/S05devices
+	ln -sf		../init.d/halt		           ${D}${sysconfdir}/rc0.d/S90halt
+	ln -sf		../init.d/save-rtc.sh	       ${D}${sysconfdir}/rc0.d/S25save-rtc.sh
+	ln -sf		../init.d/save-rtc.sh	       ${D}${sysconfdir}/rc6.d/S25save-rtc.sh
+	ln -sf		../init.d/banner	           ${D}${sysconfdir}/rcS.d/S02banner
+	ln -sf		../init.d/checkroot		       ${D}${sysconfdir}/rcS.d/S10checkroot
+#	ln -sf		../init.d/checkfs.sh	       ${D}${sysconfdir}/rcS.d/S30checkfs.sh
+	ln -sf		../init.d/mountall.sh	       ${D}${sysconfdir}/rcS.d/S35mountall.sh
+	ln -sf		../init.d/rascal-hostname.sh   ${D}${sysconfdir}/rcS.d/S36rascal-hostname.sh
+	ln -sf		../init.d/hostname.sh	       ${D}${sysconfdir}/rcS.d/S39hostname.sh
+	ln -sf		../init.d/mountnfs.sh	       ${D}${sysconfdir}/rcS.d/S45mountnfs.sh
+	ln -sf		../init.d/bootmisc.sh	       ${D}${sysconfdir}/rcS.d/S55bootmisc.sh
+#	ln -sf		../init.d/urandom	           ${D}${sysconfdir}/rcS.d/S55urandom
+                        # rascal-analogger.py not enabled by default
+	ln -sf		../init.d/rascal-gpio.sh       ${D}${sysconfdir}/rc5.d/S60rascal-gpio.sh
+	ln -sf		../init.d/rascal-set-hash.sh   ${D}${sysconfdir}/rc5.d/S65rascal-set-hash.sh
+	ln -sf		../init.d/rascal-webserver.sh  ${D}${sysconfdir}/rc5.d/S70rascal-webserver.sh
+	ln -sf		../init.d/finish.sh	           ${D}${sysconfdir}/rcS.d/S99finish.sh
+	ln -sf		../init.d/devices	           ${D}${sysconfdir}/rcS.d/S05devices
 	# udev will run at S04 if installed
-	ln -sf		../init.d/sysfs.sh	${D}${sysconfdir}/rcS.d/S03sysfs
-	ln -sf		../init.d/populate-volatile.sh	${D}${sysconfdir}/rcS.d/S37populate-volatile.sh
-	ln -sf		../init.d/devpts.sh	${D}${sysconfdir}/rcS.d/S38devpts.sh
+	ln -sf		../init.d/sysfs.sh	           ${D}${sysconfdir}/rcS.d/S03sysfs
+	ln -sf		../init.d/populate-volatile.sh ${D}${sysconfdir}/rcS.d/S37populate-volatile.sh
+	ln -sf		../init.d/devpts.sh	           ${D}${sysconfdir}/rcS.d/S38devpts.sh
 	if [ "${TARGET_ARCH}" = "arm" ]; then
-		ln -sf	../init.d/alignment.sh	${D}${sysconfdir}/rcS.d/S06alignment
+		ln -sf	../init.d/alignment.sh	       ${D}${sysconfdir}/rcS.d/S06alignment
 	fi
 
 	install -m 0755		${WORKDIR}/device_table.txt		${D}${sysconfdir}/device_table
