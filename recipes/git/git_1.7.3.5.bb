@@ -4,7 +4,7 @@ SRC_URI += "file://git-less-hardlinks.diff \
             file://gitconfig \
            "
 
-EXTRA_OECONF += "ac_cv_snprintf_returns_bogus=no ac_cv_c_c99_format=yes"
+EXTRA_OECONF += "ac_cv_snprintf_returns_bogus=no ac_cv_c_c99_format=yes --prefix=''"
 
 
 DEPENDS = "openssl curl zlib expat tcl-native"
