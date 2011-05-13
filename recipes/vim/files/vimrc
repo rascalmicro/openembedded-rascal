@@ -1,3 +1,4 @@
+set nocompatible               " Prevent vim from using legacy vi behavior as defaults
 set tabstop=4                  " Make tabs as wide as 4 spaces
 set shiftwidth=4               " Make >> and << shift text to match tab width
 set expandtab                  " Insert spaces when <TAB> is pressed
