@@ -1,35 +1,36 @@
 #!/bin/sh
 
-PATH=/sbin:/bin:/usr/bin
-BASE_DIR="/home/root/helloworld"
-WEBSERVER="/home/root/rascal/bin/paster"
-WEBSERVER_CONFIG="/home/root/helloworld/development.ini"
+PATH=/sbin:/bin:/usr/bin:/usr/sbin
+WEBSERVER="/usr/sbin/nginx"
+WEBSERVER_CONFIG="/etc/nginx/nginx.conf"
+APPSERVER="/usr/sbin/uwsgi"
+APPSERVER_CONFIG="/etc/uwsgi.ini"
 
-test -d $BASE_DIR || exit 0
 test -f $WEBSERVER || exit 0
 test -f $WEBSERVER_CONFIG || exit 0
-
-cd $BASE_DIR
+test -f $APPSERVER || exit 0
+test -f $APPSERVER_CONFIG || exit 0
 
 case "$1" in
 start)
     echo "Starting Rascal webserver..."
-    $WEBSERVER serve --daemon $WEBSERVER_CONFIG start
+    $WEBSERVER -c $WEBSERVER_CONFIG
+    $APPSERVER --ini $APPSERVER_CONFIG
     echo "done"
     ;;
-restart)
-    echo "Restarting Rascal webserver..."
-    $WEBSERVER serve --daemon $WEBSERVER_CONFIG restart
+reload)
+    echo "Reloading Rascal webserver..."
+    $WEBSERVER -c $WEBSERVER_CONFIG -s reload
     echo "done"
     ;;
 stop)
     echo "Stopping Rascal webserver..."
-    $WEBSERVER serve --daemon $WEBSERVER_CONFIG stop
+    $WEBSERVER -s stop
     echo "done"
     ;;
 *)
     echo "Bad argument supplied to rascal-webserver script."
-    echo "Usage: /etc/init.d/rascal-webserver {start|stop|restart}"
+    echo "Usage: /etc/init.d/rascal-webserver {start|stop|reload}"
     exit 1
 esac
 
