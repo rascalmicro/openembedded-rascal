@@ -28,7 +28,7 @@ do_install_append() {
 	done
 	rm ${D}${libexecdir}/git-core/git && ln -sf ${bindir}/git ${D}${libexecdir}/git-core/git
     install -m 0755 -d ${D}${sysconfdir}
-    install -m 0755 ${WORKDIR}/gitconfig ${D}${sysconfdir}
+    install -m 0644 ${WORKDIR}/gitconfig ${D}${sysconfdir}
 }
 
 FILES_${PN}-dbg += "${libexecdir}/git-core/.debug"
