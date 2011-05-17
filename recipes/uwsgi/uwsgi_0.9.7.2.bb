@@ -32,6 +32,7 @@ do_install() {
     echo ${S}
     install -m 0755 -d ${D}${sbindir}
     install -m 0755 ${S}/uwsgi ${D}${sbindir}
+    install -m 0755 -d ${D}${sysconfdir}
     install -m 0644 ${WORKDIR}/uwsgi.ini ${D}${sysconfdir}
 }
 
