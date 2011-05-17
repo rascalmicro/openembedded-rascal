@@ -11,7 +11,7 @@ S = "${WORKDIR}/git"
 SRCREV = "2.5.5"
 SRC_URI = "git://github.com/mitsuhiko/jinja2.git;protocol=git;branch=master"
 
-inherit distutils
+inherit setuptools
 
 RDEPENDS_${PN} = "\
   python-core \

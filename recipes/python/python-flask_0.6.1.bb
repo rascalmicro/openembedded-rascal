@@ -11,7 +11,7 @@ S = "${WORKDIR}/git"
 SRCREV = "0.6.1"
 SRC_URI = "git://github.com/mitsuhiko/flask.git;protocol=git;branch=master"
 
-inherit distutils
+inherit setuptools
 
 RDEPENDS_${PN} = "\
   python-core \
