@@ -16,7 +16,6 @@ IMAGE_INSTALL += "\
         nginx \
         ntpdate \
         openssh \
-        openssh-keygen \
         python \
         python-daemon \
         python-flask \
