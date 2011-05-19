@@ -1,0 +1,13 @@
+diff --git a/i2c_functions.c b/i2c_functions.c
+index 68ef17a..fe2ffff 100644
+--- a/i2c_functions.c
++++ b/i2c_functions.c
+@@ -40,7 +40,7 @@
+ #include <linux/i2c-dev.h> 
+ 
+ 
+-static char _i2c_bus[] = "/dev/i2c-3";
++static char _i2c_bus[] = "/dev/i2c-0";
+ 
+ 
+ /* some local functions */
