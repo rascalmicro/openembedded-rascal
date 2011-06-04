@@ -1,6 +1,7 @@
 require recipes/images/minimal-image.bb
 
 IMAGE_INSTALL += "\
+        avahi-daemon \
         binutils \
         control-freak \
         cpp \

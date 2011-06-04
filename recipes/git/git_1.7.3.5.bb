@@ -76,13 +76,13 @@ FILES_${PN}-large += " \
 RDEPENDS_${PN}-large = "${PN}"
 
 # git-tk package with gitk and git-gui
-PACKAGES =+ "${PN}-tk"
-RDEPENDS_${PN}-tk = "${PN} tk tcl"
-EXTRA_OEMAKE = "TCL_PATH=${STAGING_BINDIR_CROSS}/tclsh"
-FILES_${PN}-tk = " \
-	${bindir}/gitk \
-	${datadir}/gitk \
-"
+# PACKAGES =+ "${PN}-tk"
+# RDEPENDS_${PN}-tk = "${PN} tk tcl"
+# EXTRA_OEMAKE = "TCL_PATH=${STAGING_BINDIR_CROSS}/tclsh"
+# FILES_${PN}-tk = " \
+#	${bindir}/gitk \
+#	${datadir}/gitk \
+#"
 # git gui does not start at all at this time
 #FILES_${PN}-tk += " \
 #	${libexecdir}/git-core/git-gui \

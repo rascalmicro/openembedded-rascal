@@ -2,6 +2,7 @@ require avahi.inc
 
 PR = "${INC_PR}.0"
 
+PROVIDES = "avahi"
 DEPENDS += "intltool-native"
 
 PACKAGES =+ "libavahi-gobject"
