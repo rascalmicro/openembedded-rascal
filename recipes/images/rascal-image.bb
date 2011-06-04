@@ -6,14 +6,18 @@ IMAGE_INSTALL += "\
         control-freak \
         cpp \
         cpp-symlinks \
+        curl \
         gcc \
         gcc-symlinks \
         git \
+        htop \
         i2c-tools \
+        iotop \
         iperf \
         libgcc-dev \
         libxml2 \
         make \
+        mtr \
         nano \
         nginx \
         ntpdate \
@@ -28,6 +32,7 @@ IMAGE_INSTALL += "\
         python-rascal \
         python-werkzeug \
         ruby \
+        sysstat \
         usbutils \
         usb-gadget-mode \
         uwsgi \
