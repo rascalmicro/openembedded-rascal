@@ -18,14 +18,16 @@ start)
     $APPSERVER --ini $APPSERVER_CONFIG
     echo "done"
     ;;
-reload)
+reload|restart)
     echo "Reloading Rascal webserver..."
     $WEBSERVER -c $WEBSERVER_CONFIG -s reload
+    touch /tmp/uwsgi.reload
     echo "done"
     ;;
 stop)
     echo "Stopping Rascal webserver..."
     $WEBSERVER -s stop
+    ps | grep uwsgi | awk '{print $1}'| xargs kill -9
     echo "done"
     ;;
 *)
