@@ -1,6 +1,7 @@
 require recipes/images/minimal-image.bb
 
 IMAGE_INSTALL += "\
+        ack \
         avahi-daemon \
         binutils \
         control-freak \
@@ -22,6 +23,8 @@ IMAGE_INSTALL += "\
         nginx \
         ntpdate \
         openssh \
+        perl \
+        perl-modules \
         python \
         python-daemon \
         python-flask \
