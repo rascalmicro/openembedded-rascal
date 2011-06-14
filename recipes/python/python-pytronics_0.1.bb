@@ -9,7 +9,7 @@ PR = "r0"
 S = "${WORKDIR}/git"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "git://github.com/rascalmicro/hardware-api.git;protocol=git;branch=master"
+SRC_URI = "git://github.com/rascalmicro/pytronics.git;protocol=git;branch=master"
 
 inherit distutils
 
