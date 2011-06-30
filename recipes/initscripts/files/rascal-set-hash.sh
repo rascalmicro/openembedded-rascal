@@ -3,7 +3,8 @@
 # void log_msg(char*)
 log_msg()
 {
-    /usr/bin/logger -s $1
+    local MSG=$1
+    /usr/bin/logger -s -- $MSG
 }
 
 #
@@ -39,7 +40,12 @@ log_msg "Initializing Rascal"
 #
 PASSWD_FILE=/etc/passwd
 IS_BLANK=0
-DEF_PW_HASH=XnugPeUjnLedI
+BACKUP_PW_HASH=LosSvlkIAcGLk    # "rascalmicro"
+PW_HASH="`sed -ne 's/^.* pwhash=\(.\{13\}\)/\1/p' /proc/cmdline`"
+
+if [ -z "$PW_HASH" ]; then
+    PW_HASH=$BACKUP_PW_HASH
+fi
 
 while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
 do
@@ -52,10 +58,20 @@ do
 done < $PASSWD_FILE
 
 if [ $IS_BLANK != 0 ]; then
-    log_msg "Root's password was blank. It is now set to the default password for this board."
-    change_pw root $DEF_PW_HASH
+    log_msg "Root's password was blank."
+    change_pw root $PW_HASH
+    if [ "$PW_HASH" == "$BACKUP_PW_HASH" ]; then
+        log_msg "The root hash was not found in kernel command line."
+        log_msg "A hardcoded default hash has been used instead."
+        log_msg "This is *bad*. You should reset the root password immediately."
+    else
+        log_msg "The root password is now set to the default for this board."
+        log_msg "Ask milo@rascalmicro.com for the password if you've lost it."
+    fi
+    log_msg "For reference, the hash used is $PW_HASH."
 else
-    log_msg "Root's password is not blank -- good job."
+    log_msg "Root's password is not blank; good job."
+    log_msg "You are part of the solution."
 fi
 
 exit 0
