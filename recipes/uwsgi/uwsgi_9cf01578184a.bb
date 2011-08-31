@@ -1,0 +1,41 @@
+DESCRIPTION = "uWSGI is a WSGI web server for Python web applications"
+HOMEPAGE = "http://projects.unbit.it/uwsgi/wiki"
+SECTION = "net"
+PRIORITY = "optional"
+LICENSE = "GPLv2"
+SRCNAME = "uwsgi"
+PR = "r0"
+
+SRCREV = "9cf01578184a"
+SRC_URI = "hg://projects.unbit.it/hg/uwsgi;module=${PN};rev=${SRCREV} \
+           file://uwsgi.ini"
+
+S = "${WORKDIR}/${PN}"
+
+DEPENDS = "libxml2"
+
+RDEPENDS_${PN} = "\
+  python-core \
+"
+
+do_compile_prepend() {
+    export BUILD_SYS=${BUILD_SYS}
+    export HOST_SYS=${HOST_SYS}
+    export STAGING_INCDIR=${STAGING_INCDIR}
+    export STAGING_LIBDIR=${STAGING_LIBDIR}
+}
+
+do_compile() {
+    python uwsgiconfig.py --build
+}
+
+do_install() {
+    echo ${S}
+    install -m 0755 -d ${D}${sbindir}
+    install -m 0755 ${S}/uwsgi ${D}${sbindir}
+    install -m 0755 -d ${D}${sysconfdir}
+    install -m 0644 ${WORKDIR}/uwsgi.ini ${D}${sysconfdir}
+}
+
+SRC_URI[md5sum] = "bef44af218b110f58a945dc922b62731"
+SRC_URI[sha256sum] = "63a33006ea93f87aa24aaffda9e8b3bfc2d598b1d7bc4d9cd13c587f25500899"
