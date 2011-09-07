@@ -3,7 +3,7 @@ HOMEPAGE = "http://rascalmicro.com"
 SECTION = "devel/python"
 PRIORITY = "optional"
 LICENSE = "GPLv3"
-SRCNAME = "rascal"
+SRCNAME = "pytronics"
 PR = "r0"
 
 S = "${WORKDIR}/git"
