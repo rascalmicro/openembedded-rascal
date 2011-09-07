@@ -32,7 +32,7 @@ IMAGE_INSTALL += "\
         python-misc \
         python-modules \
         python-pyserial \
-        python-rascal \
+        python-pytronics \
         python-werkzeug \
         ruby \
         sysstat \
