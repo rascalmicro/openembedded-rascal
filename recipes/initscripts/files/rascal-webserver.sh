@@ -21,18 +21,18 @@ start)
 reload|restart)
     echo "Reloading Rascal webserver..."
     $WEBSERVER -c $WEBSERVER_CONFIG -s reload
-    touch /tmp/uwsgi.reload
+    touch /etc/uwsgi.reload
     echo "done"
     ;;
 stop)
     echo "Stopping Rascal webserver..."
     $WEBSERVER -s stop
-    ps | grep uwsgi | awk '{print $1}'| xargs kill -9
+    ps | awk  '/uwsgi/ && !/awk/ {print $1}'| xargs kill -9
     echo "done"
     ;;
 *)
-    echo "Bad argument supplied to rascal-webserver script."
-    echo "Usage: /etc/init.d/rascal-webserver {start|stop|reload}"
+    echo "Bad command passed to Rascal webserver boot script."
+    echo "Correct usage: /etc/init.d/rascal-webserver.sh {start|stop|reload}"
     exit 1
 esac
 
