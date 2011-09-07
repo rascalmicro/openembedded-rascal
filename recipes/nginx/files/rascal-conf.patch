@@ -1,8 +1,8 @@
 diff --git a/./conf/nginx.conf b/./conf/rascal-nginx.conf
-index 672ce8c..f27efff 100644
+index 672ce8c..83d3f83 100644
 --- a/./conf/nginx.conf
 +++ b/./conf/rascal-nginx.conf
-@@ -1,118 +1,33 @@
+@@ -1,118 +1,41 @@
 -
 -#user  nobody;
  worker_processes  1;
@@ -36,16 +36,22 @@ index 672ce8c..f27efff 100644
      keepalive_timeout  65;
  
 -    #gzip  on;
--
++    log_format comb-with-links '<a href="http://ip2location.com/$remote_addr">$remote_addr</a> [$time_local]  '
++                    '$request => generated $body_bytes_sent bytes in $request_time s ($status)';
+ 
      server {
          listen       80;
          server_name  localhost;
++        access_log /var/log/nginx/access comb-with-links;
  
 -        #charset koi8-r;
--
++        location ^~ /editor/static/ {
++            root /var/www/;
++        }
+ 
 -        #access_log  logs/host.access.log  main;
 +        location ^~ /static/ {
-+            root /var/www;
++            root /var/www/public/;
 +        }
  
          location / {
