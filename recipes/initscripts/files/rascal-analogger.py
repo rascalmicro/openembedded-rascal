@@ -2,7 +2,7 @@
 
 import daemon
 
-from rascal import analogger
+from pytronics import analogger
 
 with daemon.DaemonContext():
     analogger()
