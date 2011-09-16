@@ -6,11 +6,10 @@ LICENSE = "GPLv2"
 SRCNAME = "uwsgi"
 PR = "r0"
 
-SRCREV = "9cf01578184a"
-SRC_URI = "hg://projects.unbit.it/hg/uwsgi;module=${PN};rev=${SRCREV} \
+SRC_URI = "http://projects.unbit.it/downloads/uwsgi-${PV}.tar.gz \
            file://uwsgi.ini"
 
-S = "${WORKDIR}/${PN}"
+S = "${WORKDIR}/${PN}-${PV}"
 
 DEPENDS = "libxml2"
 
@@ -37,5 +36,5 @@ do_install() {
     install -m 0644 ${WORKDIR}/uwsgi.ini ${D}${sysconfdir}
 }
 
-SRC_URI[md5sum] = "bef44af218b110f58a945dc922b62731"
-SRC_URI[sha256sum] = "63a33006ea93f87aa24aaffda9e8b3bfc2d598b1d7bc4d9cd13c587f25500899"
+SRC_URI[md5sum] = "fafecf7dc86a36f003d2fadaa44483f1"
+SRC_URI[sha256sum] = "1f9da496dd8556644513208640c302aa38a4fe8cabe476ca3ed0b7c2b5b0ed73"
