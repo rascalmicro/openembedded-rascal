@@ -7,7 +7,8 @@ SRCNAME = "uwsgi"
 PR = "r0"
 
 SRC_URI = "http://projects.unbit.it/downloads/uwsgi-${PV}.tar.gz \
-           file://uwsgi.ini"
+           file://editor.ini \
+           file://public.ini"
 
 S = "${WORKDIR}/${PN}-${PV}"
 
@@ -33,7 +34,9 @@ do_install() {
     install -m 0755 -d ${D}${sbindir}
     install -m 0755 ${S}/uwsgi ${D}${sbindir}
     install -m 0755 -d ${D}${sysconfdir}
-    install -m 0644 ${WORKDIR}/uwsgi.ini ${D}${sysconfdir}
+    install -m 0755 -d ${D}${sysconfdir}/uwsgi
+    install -m 0644 ${WORKDIR}/editor.ini ${D}${sysconfdir}/uwsgi
+    install -m 0644 ${WORKDIR}/public.ini ${D}${sysconfdir}/uwsgi
 }
 
 SRC_URI[md5sum] = "fafecf7dc86a36f003d2fadaa44483f1"
