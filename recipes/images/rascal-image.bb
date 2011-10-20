@@ -24,6 +24,7 @@ IMAGE_INSTALL += "\
         nginx \
         ntpdate \
         openssh \
+        openssh-sftp-server \
         perl \
         perl-modules \
         python \
