@@ -56,6 +56,8 @@ ftp://.*/.*     http://mirrors.openembedded.org/
 https?$://.*/.* http://mirrors.openembedded.org/
 ftp://.*/.*     http://sources.openembedded.org/
 https?$://.*/.* http://sources.openembedded.org/
+ftp://.*/.*     http://rascalmicro.com/sources/
+https?$://.*/.* http://rascalmicro.com/sources/
 
 }
 
