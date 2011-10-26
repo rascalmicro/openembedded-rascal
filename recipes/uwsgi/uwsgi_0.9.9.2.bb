@@ -7,6 +7,7 @@ SRCNAME = "uwsgi"
 PR = "r0"
 
 SRC_URI = "http://projects.unbit.it/downloads/uwsgi-${PV}.tar.gz \
+           file://arm-timer-syscall.patch \
            file://uwsgi.ini"
 
 S = "${WORKDIR}/${PN}-${PV}"
