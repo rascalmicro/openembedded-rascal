@@ -1,0 +1,23 @@
+diff -crB orig-uwsgi-0.9.9.2/event.c uwsgi-0.9.9.2/event.c
+*** orig-uwsgi-0.9.9.2/event.c	Wed Oct 26 11:59:32 2011
+--- uwsgi-0.9.9.2/event.c	Wed Oct 26 12:00:44 2011
+***************
+*** 692,697 ****
+--- 692,698 ----
+  #elif defined(__i386__)
+  	return syscall(322, __clock_id, __flags);
+  #endif
++     return -1;
+  }
+  
+  static int timerfd_settime (int __ufd, int __flags,
+***************
+*** 702,707 ****
+--- 703,709 ----
+  #elif defined(__i386__)
+  	return syscall(325, __ufd, __flags, __utmr, __otmr);
+  #endif
++     return -1;
+  }
+  #endif
+  

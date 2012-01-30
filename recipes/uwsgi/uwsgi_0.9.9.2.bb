@@ -9,6 +9,7 @@ PR = "r0"
 SRC_URI = "http://projects.unbit.it/downloads/uwsgi-${PV}.tar.gz \
            file://editor.ini \
            file://public.ini"
+           file://arm-timer-syscall.patch \
 
 S = "${WORKDIR}/${PN}-${PV}"
 
