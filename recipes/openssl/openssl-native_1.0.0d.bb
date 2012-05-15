@@ -17,7 +17,7 @@ export BUILD_OPTIMIZATION = " "
 SRC_URI += "file://configure-targets.patch \
             file://shared-libs.patch \
             file://debian.patch \
-	    file://libdeps-first.patch \
+#	    file://libdeps-first.patch \
 	   "
 
 PARALLEL_MAKE = ""
