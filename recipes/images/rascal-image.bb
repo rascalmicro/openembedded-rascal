@@ -30,11 +30,13 @@ IMAGE_INSTALL += "\
         python \
         python-daemon \
         python-flask \
+        python-imaging \
         python-jinja2 \
         python-misc \
         python-modules \
         python-pyserial \
         python-pytronics \
+        python-simplejson \
         python-werkzeug \
         ruby \
         sysstat \
