@@ -18,6 +18,7 @@ IMAGE_INSTALL += "\
         iperf \
         libgcc-dev \
         libxml2 \
+        logrotate \
         make \
         mtr \
         nano \
@@ -29,14 +30,18 @@ IMAGE_INSTALL += "\
         perl-modules \
         python \
         python-daemon \
+        python-dev \
         python-flask \
         python-imaging \
         python-jinja2 \
         python-misc \
         python-modules \
+        python-numpy \
+        python-pip \
         python-pyserial \
         python-pytronics \
         python-simplejson \
+        python-sqlalchemy \
         python-werkzeug \
         ruby \
         sysstat \
@@ -44,6 +49,7 @@ IMAGE_INSTALL += "\
         usb-gadget-mode \
         uwsgi \
         vim \
+        vim-syntax \
         vim-vimrc \
     "
 
