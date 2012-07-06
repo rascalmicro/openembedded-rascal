@@ -16,6 +16,7 @@ IMAGE_INSTALL += "\
         i2c-tools \
         iotop \
         iperf \
+        ipython \
         libgcc-dev \
         libxml2 \
         logrotate \
@@ -34,6 +35,7 @@ IMAGE_INSTALL += "\
         python-flask \
         python-imaging \
         python-jinja2 \
+        python-matplotlib \
         python-misc \
         python-modules \
         python-numpy \
