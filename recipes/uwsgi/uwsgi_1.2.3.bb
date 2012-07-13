@@ -16,6 +16,8 @@ SRC_URI = "http://projects.unbit.it/downloads/uwsgi-${PV}.tar.gz \
 
 S = "${WORKDIR}/${PN}-${PV}"
 
+FILES_${PN} += ${libdir}/python2.6
+
 DEPENDS = "libxml2"
 
 RDEPENDS_${PN} = "\
@@ -41,8 +43,9 @@ do_install() {
     install -m 0755 -d ${D}${sysconfdir}/uwsgi
     install -m 0644 ${WORKDIR}/editor.ini ${D}${sysconfdir}/uwsgi
     install -m 0644 ${WORKDIR}/public.ini ${D}${sysconfdir}/uwsgi
-    install -m 0755 -d ${D}${libdir}/python2.6/site-packages/uwsgi
-    install -m 0755 ${S}/uwsgidecorators.py ${D}${libdir}/python2.6/site-packages/uwsgi
+    install -m 0755 -d ${D}${libdir}/python2.6
+    install -m 0755 ${S}/uwsgidecorators.py ${D}${libdir}/python2.6
+
     install -m 0755 -d ${D}${localstatedir}/log/uwsgi
     install -m 0644 ${WORKDIR}/emperor.log ${D}${localstatedir}/log/uwsgi
     install -m 0644 ${WORKDIR}/editor.log ${D}${localstatedir}/log/uwsgi
