@@ -6,7 +6,9 @@ LICENSE = "GPLv2"
 SRCNAME = "uwsgi"
 PR = "r0"
 
-SRC_URI = "http://projects.unbit.it/downloads/uwsgi-${PV}.tar.gz \
+SRCREV = "anthrax-rc2"
+
+SRC_URI = "git://github.com/rascalmicro/uwsgi.git;protocol=git;branch=interrupts \
            file://editor.ini \
            file://public.ini \
            file://emperor.log \
@@ -14,7 +16,7 @@ SRC_URI = "http://projects.unbit.it/downloads/uwsgi-${PV}.tar.gz \
            file://public.log \
            file://arm-timer-syscall.patch"
 
-S = "${WORKDIR}/${PN}-${PV}"
+S = "${WORKDIR}/git"
 
 FILES_${PN} += ${libdir}/python2.6
 
