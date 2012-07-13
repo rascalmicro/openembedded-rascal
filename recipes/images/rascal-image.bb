@@ -33,6 +33,7 @@ IMAGE_INSTALL += "\
         python-daemon \
         python-dev \
         python-flask \
+        python-flask-login \
         python-imaging \
         python-jinja2 \
         python-matplotlib \
