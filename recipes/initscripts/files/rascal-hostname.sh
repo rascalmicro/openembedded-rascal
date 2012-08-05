@@ -10,10 +10,10 @@
 # \1 means "retrieve the first thing you saved"
 #
 # Overall, the command means:
-#    "Search /proc/cmdline for 5 colons,
+#    "Search /proc/cmdline for 5 colons after ip=,
 #    and print what's between colons 4 and 5."
 
-HOSTNAME="`sed -ne 's/^[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):.*/\1/p' /proc/cmdline`"
+HOSTNAME="`sed -ne 's/^.*ip=[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):.*/\1/p' /proc/cmdline`"
 
 if [ -z "$HOSTNAME" ]
 then
