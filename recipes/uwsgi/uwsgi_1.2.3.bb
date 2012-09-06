@@ -20,7 +20,7 @@ S = "${WORKDIR}/git"
 
 FILES_${PN} += ${libdir}/python2.6
 
-DEPENDS = "libxml2"
+DEPENDS = "libxml2 openldap"
 
 RDEPENDS_${PN} = "\
   python-core \
