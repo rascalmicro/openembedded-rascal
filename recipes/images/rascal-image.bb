@@ -5,12 +5,18 @@ IMAGE_INSTALL += "\
         avahi-autoipd \
         avahi-daemon \
         binutils \
+        blinkm \
         control-freak \
         cpp \
         cpp-symlinks \
         curl \
+        ffmpeg \
+        g++ \
+        g++-symlinks \
         gcc \
         gcc-symlinks \
+        gfortran \
+        gfortran-symlinks \
         git \
         htop \
         i2c-tools \
@@ -54,6 +60,7 @@ IMAGE_INSTALL += "\
         vim \
         vim-syntax \
         vim-vimrc \
+        wireless-tools \
     "
 
 export IMAGE_BASENAME = "rascal-image"
