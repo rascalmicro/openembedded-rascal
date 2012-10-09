@@ -7,9 +7,10 @@ PR = "r0"
 
 SRC_URI = "http://nginx.org/download/nginx-${PV}.tar.gz \
            file://allow-cross.patch \
+           file://nginx \
            file://rascal-conf.patch"
 
-DEPENDS = "libpcre"
+DEPENDS = "libpcre logrotate"
 
 do_configure() {
     export cross_compiling="yes"
@@ -31,6 +32,8 @@ do_configure() {
 do_install() {
     install -d ${D}${localstatedir}/lib/nginx
     install -d ${D}${localstatedir}/log/nginx
+    install -m 0755 -d ${D}${sysconfdir}
+    install -m 0644 ${WORKDIR}/nginx ${D}${sysconfdir}/logrotate
     oe_runmake DESTDIR=${D} install
 }
 

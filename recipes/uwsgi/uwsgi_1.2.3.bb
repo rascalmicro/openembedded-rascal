@@ -14,13 +14,14 @@ SRC_URI = "git://github.com/rascalmicro/uwsgi.git;protocol=git;branch=interrupts
            file://emperor.log \
            file://editor.log \
            file://public.log \
+           file://uwsgi \
            file://arm-timer-syscall.patch"
 
 S = "${WORKDIR}/git"
 
 FILES_${PN} += ${libdir}/python2.6
 
-DEPENDS = "libxml2 openldap"
+DEPENDS = "libxml2 logrotate openldap"
 
 RDEPENDS_${PN} = "\
   python-core \
@@ -52,6 +53,7 @@ do_install() {
     install -m 0644 ${WORKDIR}/emperor.log ${D}${localstatedir}/log/uwsgi
     install -m 0644 ${WORKDIR}/editor.log ${D}${localstatedir}/log/uwsgi
     install -m 0644 ${WORKDIR}/public.log ${D}${localstatedir}/log/uwsgi
+    install -m 0644 ${WORKDIR}/uwsgi ${D}${sysconfdir}/logrotate
 }
 
 SRC_URI[md5sum] = "6090367c826216f59848677a79fb7129"
