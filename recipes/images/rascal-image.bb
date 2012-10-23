@@ -5,19 +5,27 @@ IMAGE_INSTALL += "\
         avahi-autoipd \
         avahi-daemon \
         binutils \
+        blinkm \
         control-freak \
         cpp \
         cpp-symlinks \
         curl \
+        ffmpeg \
+        g++ \
+        g++-symlinks \
         gcc \
         gcc-symlinks \
+        gfortran \
+        gfortran-symlinks \
         git \
         htop \
         i2c-tools \
         iotop \
         iperf \
+        ipython \
         libgcc-dev \
         libxml2 \
+        logrotate \
         make \
         mtr \
         nano \
@@ -29,12 +37,20 @@ IMAGE_INSTALL += "\
         perl-modules \
         python \
         python-daemon \
+        python-dev \
         python-flask \
+        python-flask-login \
+        python-imaging \
         python-jinja2 \
+        python-matplotlib \
         python-misc \
         python-modules \
+        python-numpy \
+        python-pip \
         python-pyserial \
         python-pytronics \
+        python-simplejson \
+        python-sqlalchemy \
         python-werkzeug \
         ruby \
         sysstat \
@@ -42,7 +58,9 @@ IMAGE_INSTALL += "\
         usb-gadget-mode \
         uwsgi \
         vim \
+        vim-syntax \
         vim-vimrc \
+        wireless-tools \
     "
 
 export IMAGE_BASENAME = "rascal-image"

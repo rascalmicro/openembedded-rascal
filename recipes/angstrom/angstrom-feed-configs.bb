@@ -7,7 +7,7 @@ RRECOMMENDS_${PN} += "opkg"
 PR = "r14"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-FEED_BASEPATH = "beta/" # Note that this may override other definitions of FEED_BASEPATH
+FEED_BASEPATH = "beta/"
 
 IWMMXT_FEED = "${@base_contains('MACHINE_FEATURES', 'iwmmxt', 'iwmmxt', '',d)}"
 

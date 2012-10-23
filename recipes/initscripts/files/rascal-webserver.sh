@@ -4,24 +4,30 @@ PATH=/sbin:/bin:/usr/bin:/usr/sbin
 WEBSERVER="/usr/sbin/nginx"
 WEBSERVER_CONFIG="/etc/nginx/nginx.conf"
 APPSERVER="/usr/sbin/uwsgi"
-APPSERVER_CONFIG="/etc/uwsgi.ini"
+APPSERVER_CONFIG_DIR="/etc/uwsgi/"
 
 test -f $WEBSERVER || exit 0
 test -f $WEBSERVER_CONFIG || exit 0
 test -f $APPSERVER || exit 0
-test -f $APPSERVER_CONFIG || exit 0
+test -d $APPSERVER_CONFIG_DIR || exit 0
 
 case "$1" in
 start)
     echo "Starting Rascal webserver..."
     $WEBSERVER -c $WEBSERVER_CONFIG
-    $APPSERVER --ini $APPSERVER_CONFIG
+    $APPSERVER --emperor $APPSERVER_CONFIG_DIR --daemonize /var/log/uwsgi/emperor.log
     echo "done"
     ;;
 reload|restart)
     echo "Reloading Rascal webserver..."
     $WEBSERVER -c $WEBSERVER_CONFIG -s reload
-    touch /etc/uwsgi.reload
+    echo "done"
+    echo "Reloading Python appserver..."
+    for file in $APPSERVER_CONFIG_DIR*
+    do
+        echo "Reloading app from $file"
+        touch $file
+    done
     echo "done"
     ;;
 stop)
