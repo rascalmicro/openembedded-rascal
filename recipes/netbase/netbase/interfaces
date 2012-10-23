@@ -8,10 +8,17 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
 
+# Wireless interface (USB)
+# You need the correct wireless drivers to be loaded for this to work.
+# Check rascalmicro.com for more details.
+# auto wlan0
+# iface wlan0 inet dhcp
+# pre-up wpa_supplicant -B -iwlan0 -c/etc/wpa_supplicant.conf
+# post-down killall -q wpa_supplicant
+
 # If you want to assign a static IP address, you could comment
 # out the dhcp line above and uncomment the five lines below.
 # You might need to tweak the addresses for your network.
-
 # iface eth0 inet static
 # address 192.168.1.189
 # netmask 255.255.255.0
