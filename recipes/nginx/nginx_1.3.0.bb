@@ -32,8 +32,8 @@ do_configure() {
 do_install() {
     install -d ${D}${localstatedir}/lib/nginx
     install -d ${D}${localstatedir}/log/nginx
-    install -m 0755 -d ${D}${sysconfdir}
-    install -m 0644 ${WORKDIR}/nginx ${D}${sysconfdir}/logrotate
+#    install -m 0755 -d ${D}${sysconfdir}
+#    install -m 0644 ${WORKDIR}/nginx ${D}${sysconfdir}/logrotate
     oe_runmake DESTDIR=${D} install
 }
 
