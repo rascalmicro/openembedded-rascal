@@ -22,6 +22,7 @@ IMAGE_INSTALL += "\
         iotop \
         iperf \
         ipython \
+        libevent \
         libgcc-dev \
         libxml2 \
         logrotate \
@@ -40,6 +41,8 @@ IMAGE_INSTALL += "\
         python-dev \
         python-flask \
         python-flask-login \
+        python-gevent \
+        python-greenlet \
         python-imaging \
         python-jinja2 \
         python-matplotlib \
