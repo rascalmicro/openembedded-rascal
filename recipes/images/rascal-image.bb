@@ -6,7 +6,6 @@ IMAGE_INSTALL += "\
         avahi-daemon \
         binutils \
         blinkm \
-        control-freak \
         cpp \
         cpp-symlinks \
         curl \
@@ -26,6 +25,7 @@ IMAGE_INSTALL += "\
         libgcc-dev \
         libxml2 \
         logrotate \
+        lsof \
         make \
         mtr \
         nano \
@@ -52,6 +52,7 @@ IMAGE_INSTALL += "\
         python-simplejson \
         python-sqlalchemy \
         python-werkzeug \
+        red \
         ruby \
         sysstat \
         usbutils \
