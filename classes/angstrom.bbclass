@@ -12,7 +12,7 @@ python () {
     pkgnm = bb.data.getVar("PN", d, 1)
 
     if blacklist:
-	bb.note("Angstrom DOES NOT support %s because %s" % (pkgnm, blacklist))
+	# bb.note("Angstrom DOES NOT support %s because %s" % (pkgnm, blacklist))
         raise bb.parse.SkipPackage("Angstrom DOES NOT support %s because %s" % (pkgnm, blacklist))
 
 }
