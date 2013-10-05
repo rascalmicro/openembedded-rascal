@@ -20,7 +20,7 @@ S = "${WORKDIR}/git"
 
 FILES_${PN} += ${libdir}/python2.6
 
-DEPENDS = "libxml2 logrotate openldap"
+DEPENDS = "libxml2 logrotate openldap openssl"
 
 RDEPENDS_${PN} = "\
   python-core \
@@ -36,7 +36,7 @@ do_compile_prepend() {
 }
 
 do_compile() {
-    python uwsgiconfig.py --build
+    UWSGI_INCLUDES=/usr/include,/home/ubuntu/openembedded-rascal/tmp/sysroots/armv5te-angstrom-linux-gnueabi/usr/include/openssl python uwsgiconfig.py --build
 }
 
 do_install() {
