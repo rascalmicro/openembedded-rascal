@@ -6,7 +6,8 @@ LICENSE = "BSD"
 PR = "ml1"
 
 SRC_URI = "https://pypi.python.org/packages/source/s/supervisor/supervisor-${PV}.tar.gz \
-	   file://supervisord.conf"
+           file://supervisord.conf \
+           file://supervisord.sh"
 
 S = "${WORKDIR}/supervisor-${PV}"
 
@@ -45,6 +46,7 @@ do_install_prepend() {
 	install -d ${D}${sysconfdir}/supervisor/conf.d
 
 	install -m 0644 ${WORKDIR}/supervisord.conf ${D}${sysconfdir}/supervisord.conf
+	install -m 0755 ${WORKDIR}/supervisord.sh ${D}${sysconfdir}/init.d/supervisord.sh
 }
 
 pkg_postinst() {
